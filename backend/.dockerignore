@@ -1,0 +1,10 @@
+# backend/.dockerignore
+node_modules
+dist
+.git
+.gitignore
+.env
+*.log
+coverage
+Dockerfile
+# Add any other files/folders to ignore
