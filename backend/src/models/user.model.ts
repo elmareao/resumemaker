@@ -44,4 +44,14 @@ export class User extends Model {
 
   @HasMany(() => Cv)
   cvs!: Cv[];
+
+  // Define association with RefreshToken
+  // This is mostly for type-safety and ORM awareness;
+  // actual foreign key is in RefreshToken model
+  @HasMany(() => require('./refreshToken.model').RefreshToken, 'userId') // Use require for late import
+  refreshTokens!: InstanceType<typeof import('./refreshToken.model').RefreshToken>[];
+
+  // Define association with PasswordResetToken
+  @HasMany(() => require('./passwordResetToken.model').PasswordResetToken, 'userId') // Use require for late import
+  passwordResetTokens!: InstanceType<typeof import('./passwordResetToken.model').PasswordResetToken>[];
 }

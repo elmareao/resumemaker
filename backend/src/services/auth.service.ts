@@ -36,6 +36,12 @@ export const registerUser = async (userData: any) => {
   return { user: { id: user.id, email: user.email, plan_type: user.plan_type }, token };
 };
 
+// Export hashPassword to be used by other services/controllers if needed
+export const hashPassword = async (password: string): Promise<string> => {
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(password, salt);
+};
+
 export const loginUser = async (loginData: any) => {
   const { email, password } = loginData;
 
